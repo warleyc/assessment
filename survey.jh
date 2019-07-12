@@ -1,0 +1,83 @@
+
+entity Assessment {
+	applicationName String,
+    assetOwner String,
+    techDivisionManager String,
+    applicationVersion String
+}
+
+entity Question {
+	name String,
+    text String,
+    answerRequired Boolean,
+    
+}
+
+entity QuestionType {
+	countryName String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Response {
+	streetAddress String,
+	postalCode String,
+	city String,
+	stateProvince String
+}
+
+entity Response {
+	departmentName String required
+}
+
+entity Computation {
+	weightedScore Integer required
+}
+
+entity LOV {
+	pratice String required,
+    category String required,
+    currentStatus String required,
+    options String required,
+    weight Integer  required,
+    score Integer  required
+}
+
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity Task {
+	title String,
+	description String
+}
+
+
+relationship OneToMany {
+	Assessment{assessment} to Response	
+}
+
+
+relationship OneToOne {
+	Response{question} to Question
+}
+
+relationship OneToOne {
+	Question{question} to QuestionType
+}
+
+
+
+// Set pagination options
+paginate JobHistory, Employee with infinite-scroll
+paginate Job with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
