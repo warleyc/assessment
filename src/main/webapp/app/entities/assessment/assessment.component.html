@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span>Assessments</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-assessment" [routerLink]="['/assessment/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Assessment
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="assessments?.length === 0">
+        <span>No assessments found</span>
+    </div>
+    <div class="table-responsive" *ngIf="assessments?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Application Name</span></th>
+            <th><span>Asset Owner</span></th>
+            <th><span>Tech Division Manager</span></th>
+            <th><span>Application Version</span></th>
+            <th><span>Assessment</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let assessment of assessments ;trackBy: trackId">
+                <td><a [routerLink]="['/assessment', assessment.id, 'view' ]">{{assessment.id}}</a></td>
+                <td>{{assessment.applicationName}}</td>
+                <td>{{assessment.assetOwner}}</td>
+                <td>{{assessment.techDivisionManager}}</td>
+                <td>{{assessment.applicationVersion}}</td>
+                <td>
+                    <div *ngIf="assessment.assessment">
+                        <a [routerLink]="['../assessment-response', assessment.assessment?.id, 'view' ]" >{{assessment.assessment?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/assessment', assessment.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/assessment', assessment.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'assessment', { outlets: { popup: assessment.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

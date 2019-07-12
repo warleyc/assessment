@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="assessment">
+            <h2><span>Assessment</span> {{assessment.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Application Name</span></dt>
+                <dd>
+                    <span>{{assessment.applicationName}}</span>
+                </dd>
+                <dt><span>Asset Owner</span></dt>
+                <dd>
+                    <span>{{assessment.assetOwner}}</span>
+                </dd>
+                <dt><span>Tech Division Manager</span></dt>
+                <dd>
+                    <span>{{assessment.techDivisionManager}}</span>
+                </dd>
+                <dt><span>Application Version</span></dt>
+                <dd>
+                    <span>{{assessment.applicationVersion}}</span>
+                </dd>
+                <dt><span>Assessment</span></dt>
+                <dd>
+                    <div *ngIf="assessment.assessment">
+                        <a [routerLink]="['/assessment-response', assessment.assessment?.id, 'view']">{{assessment.assessment?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/assessment', assessment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
