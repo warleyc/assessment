@@ -1,0 +1,44 @@
+{
+    "name": "Assessment",
+    "fields": [
+        {
+            "fieldName": "applicationName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "assetOwner",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "techDivisionManager",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "applicationVersion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastModification",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "assessmentResponse",
+            "otherEntityRelationshipName": "assessment",
+            "relationshipName": "assessment",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190715030719",
+    "entityTableName": "assessment",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

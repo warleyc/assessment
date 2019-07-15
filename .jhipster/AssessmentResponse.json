@@ -1,0 +1,40 @@
+{
+    "name": "AssessmentResponse",
+    "fields": [
+        {
+            "fieldName": "na",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "comment",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "option",
+            "otherEntityRelationshipName": "assessmentResponse",
+            "relationshipName": "response",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "question",
+            "otherEntityRelationshipName": "assessmentResponse",
+            "relationshipName": "reponse",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190715030722",
+    "entityTableName": "assessment_response",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
