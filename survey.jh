@@ -1,0 +1,84 @@
+
+entity Assessment {
+	applicationName String,
+    assetOwner String,
+    techDivisionManager String,
+    applicationVersion String,
+    lastModification Date
+}
+
+entity Question {
+	name String,
+    text String,
+    answerRequired Boolean,
+    
+}
+
+entity QuestionType {
+	type String
+}
+
+
+entity AssessmentResponse {	
+	na Boolean,
+    comment String
+}
+
+entity Category {
+	name String required
+}
+
+entity Pratice {
+	name String required
+}
+
+
+entity Option {	    
+    options String required,
+    weight Integer  required,
+    score Integer  required
+}
+
+
+
+relationship OneToOne {
+	Assessment{assessment} to AssessmentResponse	
+}
+
+relationship OneToOne {
+	Option{option} to Category	
+}
+
+
+relationship OneToOne {
+	AssessmentResponse{response} to Option	
+}
+
+relationship OneToMany {
+	Question{question} to Option	
+}
+
+
+relationship OneToOne {
+	AssessmentResponse{reponse} to Question
+}
+
+relationship OneToOne {
+	Question{question} to Category
+}
+
+relationship OneToOne {
+	Category{category} to Pratice
+}
+
+
+relationship OneToOne {
+	Question{question} to QuestionType
+}
+
+
+
+
+// Set service options to all except few
+service all with serviceImpl
+
