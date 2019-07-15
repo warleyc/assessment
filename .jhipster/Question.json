@@ -1,0 +1,50 @@
+{
+    "name": "Question",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "text",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "answerRequired",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "category",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "question",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "questionType",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "question",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "option",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "question"
+        }
+    ],
+    "changelogDate": "20190715030808",
+    "entityTableName": "question",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
