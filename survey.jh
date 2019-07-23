@@ -4,7 +4,14 @@ entity Assessment {
     assetOwner String,
     techDivisionManager String,
     applicationVersion String,
-    lastModification ZonedDateTime
+    status STATUS,
+    lastModification LocalDate
+}
+
+enum STATUS {
+	DRAFT,
+    VALIDATE,
+    IN_PROGRESS
 }
 
 entity Question {
@@ -12,6 +19,10 @@ entity Question {
     text String,
     answerRequired Boolean,
     
+}
+
+entity Annotation {
+	test String
 }
 
 entity QuestionType {
@@ -40,40 +51,43 @@ entity Option {
 }
 
 
-
 relationship OneToOne {
-	Assessment{assessment} to AssessmentResponse	
+	AssessmentResponse{annotation} to Annotation	
 }
 
 relationship OneToOne {
-	Option{option} to Category	
+	Assessment{assessmentResponse} to AssessmentResponse	
+}
+
+relationship OneToOne {
+	Option{category} to Category	
 }
 
 
 relationship OneToOne {
-	AssessmentResponse{response} to Option	
+	AssessmentResponse{option} to Option	
 }
 
 relationship OneToMany {
-	Question{question} to Option	
+	Question{option} to Option	
 }
 
 
 relationship OneToOne {
-	AssessmentResponse{reponse} to Question
+	AssessmentResponse{question} to Question
 }
 
 relationship OneToOne {
-	Question{question} to Category
+	Question{category} to Category
 }
 
 relationship OneToOne {
-	Category{category} to Pratice
+	Category{pratice} to Pratice
 }
 
 
 relationship OneToOne {
-	Question{question} to QuestionType
+	Question{questionType} to QuestionType
 }
 
 
