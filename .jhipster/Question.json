@@ -19,7 +19,7 @@
             "relationshipType": "one-to-one",
             "otherEntityName": "category",
             "otherEntityRelationshipName": "question",
-            "relationshipName": "question",
+            "relationshipName": "category",
             "otherEntityField": "id",
             "ownerSide": true
         },
@@ -27,7 +27,7 @@
             "relationshipType": "one-to-one",
             "otherEntityName": "questionType",
             "otherEntityRelationshipName": "question",
-            "relationshipName": "question",
+            "relationshipName": "questionType",
             "otherEntityField": "id",
             "ownerSide": true
         },
@@ -35,10 +35,10 @@
             "relationshipType": "one-to-many",
             "otherEntityName": "option",
             "otherEntityRelationshipName": "question",
-            "relationshipName": "question"
+            "relationshipName": "option"
         }
     ],
-    "changelogDate": "20190715030808",
+    "changelogDate": "20190723124431",
     "entityTableName": "question",
     "dto": "no",
     "pagination": "no",

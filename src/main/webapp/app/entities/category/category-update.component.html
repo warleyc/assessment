@@ -22,10 +22,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_category">Category</label>
-                    <select class="form-control" id="field_category" name="category" formControlName="category">
+                    <label class="form-control-label" for="field_pratice">Pratice</label>
+                    <select class="form-control" id="field_pratice" name="pratice" formControlName="pratice">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="praticeOption.id === editForm.get('category').value?.id ? editForm.get('category').value : praticeOption" *ngFor="let praticeOption of categories; trackBy: trackPraticeById">{{praticeOption.id}}</option>
+                        <option [ngValue]="praticeOption.id === editForm.get('pratice').value?.id ? editForm.get('pratice').value : praticeOption" *ngFor="let praticeOption of pratices; trackBy: trackPraticeById">{{praticeOption.id}}</option>
                     </select>
                 </div>
             </div>

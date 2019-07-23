@@ -14,12 +14,12 @@
             "relationshipType": "one-to-one",
             "otherEntityName": "pratice",
             "otherEntityRelationshipName": "category",
-            "relationshipName": "category",
+            "relationshipName": "pratice",
             "otherEntityField": "id",
             "ownerSide": true
         }
     ],
-    "changelogDate": "20190715030811",
+    "changelogDate": "20190723124435",
     "entityTableName": "category",
     "dto": "no",
     "pagination": "no",

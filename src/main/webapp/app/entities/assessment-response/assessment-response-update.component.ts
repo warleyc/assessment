@@ -7,6 +7,8 @@ import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
 import { IAssessmentResponse, AssessmentResponse } from 'app/shared/model/assessment-response.model';
 import { AssessmentResponseService } from './assessment-response.service';
+import { IAnnotation } from 'app/shared/model/annotation.model';
+import { AnnotationService } from 'app/entities/annotation';
 import { IOption } from 'app/shared/model/option.model';
 import { OptionService } from 'app/entities/option';
 import { IQuestion } from 'app/shared/model/question.model';
@@ -19,21 +21,25 @@ import { QuestionService } from 'app/entities/question';
 export class AssessmentResponseUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  responses: IOption[];
+  annotations: IAnnotation[];
 
-  reponses: IQuestion[];
+  options: IOption[];
+
+  questions: IQuestion[];
 
   editForm = this.fb.group({
     id: [],
     na: [],
     comment: [],
-    response: [],
-    reponse: []
+    annotation: [],
+    option: [],
+    question: []
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected assessmentResponseService: AssessmentResponseService,
+    protected annotationService: AnnotationService,
     protected optionService: OptionService,
     protected questionService: QuestionService,
     protected activatedRoute: ActivatedRoute,
@@ -45,6 +51,31 @@ export class AssessmentResponseUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ assessmentResponse }) => {
       this.updateForm(assessmentResponse);
     });
+    this.annotationService
+      .query({ filter: 'assessmentresponse-is-null' })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IAnnotation[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IAnnotation[]>) => response.body)
+      )
+      .subscribe(
+        (res: IAnnotation[]) => {
+          if (!this.editForm.get('annotation').value || !this.editForm.get('annotation').value.id) {
+            this.annotations = res;
+          } else {
+            this.annotationService
+              .find(this.editForm.get('annotation').value.id)
+              .pipe(
+                filter((subResMayBeOk: HttpResponse<IAnnotation>) => subResMayBeOk.ok),
+                map((subResponse: HttpResponse<IAnnotation>) => subResponse.body)
+              )
+              .subscribe(
+                (subRes: IAnnotation) => (this.annotations = [subRes].concat(res)),
+                (subRes: HttpErrorResponse) => this.onError(subRes.message)
+              );
+          }
+        },
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
     this.optionService
       .query({ filter: 'assessmentresponse-is-null' })
       .pipe(
@@ -53,17 +84,17 @@ export class AssessmentResponseUpdateComponent implements OnInit {
       )
       .subscribe(
         (res: IOption[]) => {
-          if (!this.editForm.get('response').value || !this.editForm.get('response').value.id) {
-            this.responses = res;
+          if (!this.editForm.get('option').value || !this.editForm.get('option').value.id) {
+            this.options = res;
           } else {
             this.optionService
-              .find(this.editForm.get('response').value.id)
+              .find(this.editForm.get('option').value.id)
               .pipe(
                 filter((subResMayBeOk: HttpResponse<IOption>) => subResMayBeOk.ok),
                 map((subResponse: HttpResponse<IOption>) => subResponse.body)
               )
               .subscribe(
-                (subRes: IOption) => (this.responses = [subRes].concat(res)),
+                (subRes: IOption) => (this.options = [subRes].concat(res)),
                 (subRes: HttpErrorResponse) => this.onError(subRes.message)
               );
           }
@@ -78,17 +109,17 @@ export class AssessmentResponseUpdateComponent implements OnInit {
       )
       .subscribe(
         (res: IQuestion[]) => {
-          if (!this.editForm.get('reponse').value || !this.editForm.get('reponse').value.id) {
-            this.reponses = res;
+          if (!this.editForm.get('question').value || !this.editForm.get('question').value.id) {
+            this.questions = res;
           } else {
             this.questionService
-              .find(this.editForm.get('reponse').value.id)
+              .find(this.editForm.get('question').value.id)
               .pipe(
                 filter((subResMayBeOk: HttpResponse<IQuestion>) => subResMayBeOk.ok),
                 map((subResponse: HttpResponse<IQuestion>) => subResponse.body)
               )
               .subscribe(
-                (subRes: IQuestion) => (this.reponses = [subRes].concat(res)),
+                (subRes: IQuestion) => (this.questions = [subRes].concat(res)),
                 (subRes: HttpErrorResponse) => this.onError(subRes.message)
               );
           }
@@ -102,8 +133,9 @@ export class AssessmentResponseUpdateComponent implements OnInit {
       id: assessmentResponse.id,
       na: assessmentResponse.na,
       comment: assessmentResponse.comment,
-      response: assessmentResponse.response,
-      reponse: assessmentResponse.reponse
+      annotation: assessmentResponse.annotation,
+      option: assessmentResponse.option,
+      question: assessmentResponse.question
     });
   }
 
@@ -127,8 +159,9 @@ export class AssessmentResponseUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       na: this.editForm.get(['na']).value,
       comment: this.editForm.get(['comment']).value,
-      response: this.editForm.get(['response']).value,
-      reponse: this.editForm.get(['reponse']).value
+      annotation: this.editForm.get(['annotation']).value,
+      option: this.editForm.get(['option']).value,
+      question: this.editForm.get(['question']).value
     };
   }
 
@@ -146,6 +179,10 @@ export class AssessmentResponseUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  trackAnnotationById(index: number, item: IAnnotation) {
+    return item.id;
   }
 
   trackOptionById(index: number, item: IOption) {

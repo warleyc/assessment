@@ -21,17 +21,24 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_response">Response</label>
-                    <select class="form-control" id="field_response" name="response" formControlName="response">
+                    <label class="form-control-label" for="field_annotation">Annotation</label>
+                    <select class="form-control" id="field_annotation" name="annotation" formControlName="annotation">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="optionOption.id === editForm.get('response').value?.id ? editForm.get('response').value : optionOption" *ngFor="let optionOption of responses; trackBy: trackOptionById">{{optionOption.id}}</option>
+                        <option [ngValue]="annotationOption.id === editForm.get('annotation').value?.id ? editForm.get('annotation').value : annotationOption" *ngFor="let annotationOption of annotations; trackBy: trackAnnotationById">{{annotationOption.id}}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_reponse">Reponse</label>
-                    <select class="form-control" id="field_reponse" name="reponse" formControlName="reponse">
+                    <label class="form-control-label" for="field_option">Option</label>
+                    <select class="form-control" id="field_option" name="option" formControlName="option">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="questionOption.id === editForm.get('reponse').value?.id ? editForm.get('reponse').value : questionOption" *ngFor="let questionOption of reponses; trackBy: trackQuestionById">{{questionOption.id}}</option>
+                        <option [ngValue]="optionOption.id === editForm.get('option').value?.id ? editForm.get('option').value : optionOption" *ngFor="let optionOption of options; trackBy: trackOptionById">{{optionOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_question">Question</label>
+                    <select class="form-control" id="field_question" name="question" formControlName="question">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="questionOption.id === editForm.get('question').value?.id ? editForm.get('question').value : questionOption" *ngFor="let questionOption of questions; trackBy: trackQuestionById">{{questionOption.id}}</option>
                     </select>
                 </div>
             </div>

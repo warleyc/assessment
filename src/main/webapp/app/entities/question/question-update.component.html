@@ -26,17 +26,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_question">Question</label>
-                    <select class="form-control" id="field_question" name="question" formControlName="question">
+                    <label class="form-control-label" for="field_category">Category</label>
+                    <select class="form-control" id="field_category" name="category" formControlName="category">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="categoryOption.id === editForm.get('question').value?.id ? editForm.get('question').value : categoryOption" *ngFor="let categoryOption of questions; trackBy: trackCategoryById">{{categoryOption.id}}</option>
+                        <option [ngValue]="categoryOption.id === editForm.get('category').value?.id ? editForm.get('category').value : categoryOption" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.id}}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_question">Question</label>
-                    <select class="form-control" id="field_question" name="question" formControlName="question">
+                    <label class="form-control-label" for="field_questionType">Question Type</label>
+                    <select class="form-control" id="field_questionType" name="questionType" formControlName="questionType">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="questionTypeOption.id === editForm.get('question').value?.id ? editForm.get('question').value : questionTypeOption" *ngFor="let questionTypeOption of questions; trackBy: trackQuestionTypeById">{{questionTypeOption.id}}</option>
+                        <option [ngValue]="questionTypeOption.id === editForm.get('questionType').value?.id ? editForm.get('questionType').value : questionTypeOption" *ngFor="let questionTypeOption of questiontypes; trackBy: trackQuestionTypeById">{{questionTypeOption.id}}</option>
                     </select>
                 </div>
             </div>

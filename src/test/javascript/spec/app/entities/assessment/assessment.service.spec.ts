@@ -5,9 +5,9 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { AssessmentService } from 'app/entities/assessment/assessment.service';
-import { IAssessment, Assessment } from 'app/shared/model/assessment.model';
+import { IAssessment, Assessment, Status } from 'app/shared/model/assessment.model';
 
 describe('Service Tests', () => {
   describe('Assessment Service', () => {
@@ -27,14 +27,14 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Assessment(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', currentDate);
+      elemDefault = new Assessment(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', Status.DRAFT, currentDate, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
       it('should find an element', async () => {
         const returnedFromService = Object.assign(
           {
-            lastModification: currentDate.format(DATE_TIME_FORMAT)
+            lastModification: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
@@ -52,7 +52,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
-            lastModification: currentDate.format(DATE_TIME_FORMAT)
+            lastModification: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
@@ -78,7 +78,9 @@ describe('Service Tests', () => {
             assetOwner: 'BBBBBB',
             techDivisionManager: 'BBBBBB',
             applicationVersion: 'BBBBBB',
-            lastModification: currentDate.format(DATE_TIME_FORMAT)
+            status: 'BBBBBB',
+            lastModification: currentDate.format(DATE_FORMAT),
+            information: 'BBBBBB'
           },
           elemDefault
         );
@@ -105,7 +107,9 @@ describe('Service Tests', () => {
             assetOwner: 'BBBBBB',
             techDivisionManager: 'BBBBBB',
             applicationVersion: 'BBBBBB',
-            lastModification: currentDate.format(DATE_TIME_FORMAT)
+            status: 'BBBBBB',
+            lastModification: currentDate.format(DATE_FORMAT),
+            information: 'BBBBBB'
           },
           elemDefault
         );

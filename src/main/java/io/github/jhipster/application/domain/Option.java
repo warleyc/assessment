@@ -23,12 +23,8 @@ public class Option implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "options", nullable = false)
-    private String options;
-
-    @NotNull
-    @Column(name = "weight", nullable = false)
-    private Integer weight;
+    @Column(name = "text", nullable = false)
+    private String text;
 
     @NotNull
     @Column(name = "score", nullable = false)
@@ -40,7 +36,7 @@ public class Option implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Category option;
+    private Category category;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -51,30 +47,17 @@ public class Option implements Serializable {
         this.id = id;
     }
 
-    public String getOptions() {
-        return options;
+    public String getText() {
+        return text;
     }
 
-    public Option options(String options) {
-        this.options = options;
+    public Option text(String text) {
+        this.text = text;
         return this;
     }
 
-    public void setOptions(String options) {
-        this.options = options;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public Option weight(Integer weight) {
-        this.weight = weight;
-        return this;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public Integer getScore() {
@@ -103,17 +86,17 @@ public class Option implements Serializable {
         this.question = question;
     }
 
-    public Category getOption() {
-        return option;
+    public Category getCategory() {
+        return category;
     }
 
-    public Option option(Category category) {
-        this.option = category;
+    public Option category(Category category) {
+        this.category = category;
         return this;
     }
 
-    public void setOption(Category category) {
-        this.option = category;
+    public void setCategory(Category category) {
+        this.category = category;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -137,8 +120,7 @@ public class Option implements Serializable {
     public String toString() {
         return "Option{" +
             "id=" + getId() +
-            ", options='" + getOptions() + "'" +
-            ", weight=" + getWeight() +
+            ", text='" + getText() + "'" +
             ", score=" + getScore() +
             "}";
     }

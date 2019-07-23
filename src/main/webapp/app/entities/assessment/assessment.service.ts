@@ -52,7 +52,9 @@ export class AssessmentService {
   protected convertDateFromClient(assessment: IAssessment): IAssessment {
     const copy: IAssessment = Object.assign({}, assessment, {
       lastModification:
-        assessment.lastModification != null && assessment.lastModification.isValid() ? assessment.lastModification.toJSON() : null
+        assessment.lastModification != null && assessment.lastModification.isValid()
+          ? assessment.lastModification.format(DATE_FORMAT)
+          : null
     });
     return copy;
   }

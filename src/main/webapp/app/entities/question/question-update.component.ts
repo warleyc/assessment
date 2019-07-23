@@ -19,17 +19,17 @@ import { QuestionTypeService } from 'app/entities/question-type';
 export class QuestionUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  questions: ICategory[];
+  categories: ICategory[];
 
-  questions: IQuestionType[];
+  questiontypes: IQuestionType[];
 
   editForm = this.fb.group({
     id: [],
     name: [],
     text: [],
     answerRequired: [],
-    question: [],
-    question: []
+    category: [],
+    questionType: []
   });
 
   constructor(
@@ -54,17 +54,17 @@ export class QuestionUpdateComponent implements OnInit {
       )
       .subscribe(
         (res: ICategory[]) => {
-          if (!this.editForm.get('question').value || !this.editForm.get('question').value.id) {
-            this.questions = res;
+          if (!this.editForm.get('category').value || !this.editForm.get('category').value.id) {
+            this.categories = res;
           } else {
             this.categoryService
-              .find(this.editForm.get('question').value.id)
+              .find(this.editForm.get('category').value.id)
               .pipe(
                 filter((subResMayBeOk: HttpResponse<ICategory>) => subResMayBeOk.ok),
                 map((subResponse: HttpResponse<ICategory>) => subResponse.body)
               )
               .subscribe(
-                (subRes: ICategory) => (this.questions = [subRes].concat(res)),
+                (subRes: ICategory) => (this.categories = [subRes].concat(res)),
                 (subRes: HttpErrorResponse) => this.onError(subRes.message)
               );
           }
@@ -79,17 +79,17 @@ export class QuestionUpdateComponent implements OnInit {
       )
       .subscribe(
         (res: IQuestionType[]) => {
-          if (!this.editForm.get('question').value || !this.editForm.get('question').value.id) {
-            this.questions = res;
+          if (!this.editForm.get('questionType').value || !this.editForm.get('questionType').value.id) {
+            this.questiontypes = res;
           } else {
             this.questionTypeService
-              .find(this.editForm.get('question').value.id)
+              .find(this.editForm.get('questionType').value.id)
               .pipe(
                 filter((subResMayBeOk: HttpResponse<IQuestionType>) => subResMayBeOk.ok),
                 map((subResponse: HttpResponse<IQuestionType>) => subResponse.body)
               )
               .subscribe(
-                (subRes: IQuestionType) => (this.questions = [subRes].concat(res)),
+                (subRes: IQuestionType) => (this.questiontypes = [subRes].concat(res)),
                 (subRes: HttpErrorResponse) => this.onError(subRes.message)
               );
           }
@@ -104,8 +104,8 @@ export class QuestionUpdateComponent implements OnInit {
       name: question.name,
       text: question.text,
       answerRequired: question.answerRequired,
-      question: question.question,
-      question: question.question
+      category: question.category,
+      questionType: question.questionType
     });
   }
 
@@ -130,8 +130,8 @@ export class QuestionUpdateComponent implements OnInit {
       name: this.editForm.get(['name']).value,
       text: this.editForm.get(['text']).value,
       answerRequired: this.editForm.get(['answerRequired']).value,
-      question: this.editForm.get(['question']).value,
-      question: this.editForm.get(['question']).value
+      category: this.editForm.get(['category']).value,
+      questionType: this.editForm.get(['questionType']).value
     };
   }
 

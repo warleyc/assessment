@@ -27,7 +27,7 @@ public class Category implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Pratice category;
+    private Pratice pratice;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -51,17 +51,17 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public Pratice getCategory() {
-        return category;
+    public Pratice getPratice() {
+        return pratice;
     }
 
-    public Category category(Pratice pratice) {
-        this.category = pratice;
+    public Category pratice(Pratice pratice) {
+        this.pratice = pratice;
         return this;
     }
 
-    public void setCategory(Pratice pratice) {
-        this.category = pratice;
+    public void setPratice(Pratice pratice) {
+        this.pratice = pratice;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

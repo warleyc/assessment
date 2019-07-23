@@ -20,19 +20,17 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-import static io.github.jhipster.application.web.rest.TestUtil.sameInstant;
 import static io.github.jhipster.application.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import io.github.jhipster.application.domain.enumeration.Status;
 /**
  * Integration tests for the {@Link AssessmentResource} REST controller.
  */
@@ -51,8 +49,14 @@ public class AssessmentResourceIT {
     private static final String DEFAULT_APPLICATION_VERSION = "AAAAAAAAAA";
     private static final String UPDATED_APPLICATION_VERSION = "BBBBBBBBBB";
 
-    private static final ZonedDateTime DEFAULT_LAST_MODIFICATION = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_LAST_MODIFICATION = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final Status DEFAULT_STATUS = Status.DRAFT;
+    private static final Status UPDATED_STATUS = Status.VALIDATE;
+
+    private static final LocalDate DEFAULT_LAST_MODIFICATION = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_LAST_MODIFICATION = LocalDate.now(ZoneId.systemDefault());
+
+    private static final String DEFAULT_INFORMATION = "AAAAAAAAAA";
+    private static final String UPDATED_INFORMATION = "BBBBBBBBBB";
 
     @Autowired
     private AssessmentRepository assessmentRepository;
@@ -103,7 +107,9 @@ public class AssessmentResourceIT {
             .assetOwner(DEFAULT_ASSET_OWNER)
             .techDivisionManager(DEFAULT_TECH_DIVISION_MANAGER)
             .applicationVersion(DEFAULT_APPLICATION_VERSION)
-            .lastModification(DEFAULT_LAST_MODIFICATION);
+            .status(DEFAULT_STATUS)
+            .lastModification(DEFAULT_LAST_MODIFICATION)
+            .information(DEFAULT_INFORMATION);
         return assessment;
     }
     /**
@@ -118,7 +124,9 @@ public class AssessmentResourceIT {
             .assetOwner(UPDATED_ASSET_OWNER)
             .techDivisionManager(UPDATED_TECH_DIVISION_MANAGER)
             .applicationVersion(UPDATED_APPLICATION_VERSION)
-            .lastModification(UPDATED_LAST_MODIFICATION);
+            .status(UPDATED_STATUS)
+            .lastModification(UPDATED_LAST_MODIFICATION)
+            .information(UPDATED_INFORMATION);
         return assessment;
     }
 
@@ -146,7 +154,9 @@ public class AssessmentResourceIT {
         assertThat(testAssessment.getAssetOwner()).isEqualTo(DEFAULT_ASSET_OWNER);
         assertThat(testAssessment.getTechDivisionManager()).isEqualTo(DEFAULT_TECH_DIVISION_MANAGER);
         assertThat(testAssessment.getApplicationVersion()).isEqualTo(DEFAULT_APPLICATION_VERSION);
+        assertThat(testAssessment.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testAssessment.getLastModification()).isEqualTo(DEFAULT_LAST_MODIFICATION);
+        assertThat(testAssessment.getInformation()).isEqualTo(DEFAULT_INFORMATION);
     }
 
     @Test
@@ -184,7 +194,9 @@ public class AssessmentResourceIT {
             .andExpect(jsonPath("$.[*].assetOwner").value(hasItem(DEFAULT_ASSET_OWNER.toString())))
             .andExpect(jsonPath("$.[*].techDivisionManager").value(hasItem(DEFAULT_TECH_DIVISION_MANAGER.toString())))
             .andExpect(jsonPath("$.[*].applicationVersion").value(hasItem(DEFAULT_APPLICATION_VERSION.toString())))
-            .andExpect(jsonPath("$.[*].lastModification").value(hasItem(sameInstant(DEFAULT_LAST_MODIFICATION))));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].lastModification").value(hasItem(DEFAULT_LAST_MODIFICATION.toString())))
+            .andExpect(jsonPath("$.[*].information").value(hasItem(DEFAULT_INFORMATION.toString())));
     }
     
     @Test
@@ -202,7 +214,9 @@ public class AssessmentResourceIT {
             .andExpect(jsonPath("$.assetOwner").value(DEFAULT_ASSET_OWNER.toString()))
             .andExpect(jsonPath("$.techDivisionManager").value(DEFAULT_TECH_DIVISION_MANAGER.toString()))
             .andExpect(jsonPath("$.applicationVersion").value(DEFAULT_APPLICATION_VERSION.toString()))
-            .andExpect(jsonPath("$.lastModification").value(sameInstant(DEFAULT_LAST_MODIFICATION)));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
+            .andExpect(jsonPath("$.lastModification").value(DEFAULT_LAST_MODIFICATION.toString()))
+            .andExpect(jsonPath("$.information").value(DEFAULT_INFORMATION.toString()));
     }
 
     @Test
@@ -230,7 +244,9 @@ public class AssessmentResourceIT {
             .assetOwner(UPDATED_ASSET_OWNER)
             .techDivisionManager(UPDATED_TECH_DIVISION_MANAGER)
             .applicationVersion(UPDATED_APPLICATION_VERSION)
-            .lastModification(UPDATED_LAST_MODIFICATION);
+            .status(UPDATED_STATUS)
+            .lastModification(UPDATED_LAST_MODIFICATION)
+            .information(UPDATED_INFORMATION);
 
         restAssessmentMockMvc.perform(put("/api/assessments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -245,7 +261,9 @@ public class AssessmentResourceIT {
         assertThat(testAssessment.getAssetOwner()).isEqualTo(UPDATED_ASSET_OWNER);
         assertThat(testAssessment.getTechDivisionManager()).isEqualTo(UPDATED_TECH_DIVISION_MANAGER);
         assertThat(testAssessment.getApplicationVersion()).isEqualTo(UPDATED_APPLICATION_VERSION);
+        assertThat(testAssessment.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testAssessment.getLastModification()).isEqualTo(UPDATED_LAST_MODIFICATION);
+        assertThat(testAssessment.getInformation()).isEqualTo(UPDATED_INFORMATION);
     }
 
     @Test

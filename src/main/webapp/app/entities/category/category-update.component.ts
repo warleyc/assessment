@@ -17,12 +17,12 @@ import { PraticeService } from 'app/entities/pratice';
 export class CategoryUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  categories: IPratice[];
+  pratices: IPratice[];
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    category: []
+    pratice: []
   });
 
   constructor(
@@ -46,17 +46,17 @@ export class CategoryUpdateComponent implements OnInit {
       )
       .subscribe(
         (res: IPratice[]) => {
-          if (!this.editForm.get('category').value || !this.editForm.get('category').value.id) {
-            this.categories = res;
+          if (!this.editForm.get('pratice').value || !this.editForm.get('pratice').value.id) {
+            this.pratices = res;
           } else {
             this.praticeService
-              .find(this.editForm.get('category').value.id)
+              .find(this.editForm.get('pratice').value.id)
               .pipe(
                 filter((subResMayBeOk: HttpResponse<IPratice>) => subResMayBeOk.ok),
                 map((subResponse: HttpResponse<IPratice>) => subResponse.body)
               )
               .subscribe(
-                (subRes: IPratice) => (this.categories = [subRes].concat(res)),
+                (subRes: IPratice) => (this.pratices = [subRes].concat(res)),
                 (subRes: HttpErrorResponse) => this.onError(subRes.message)
               );
           }
@@ -69,7 +69,7 @@ export class CategoryUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: category.id,
       name: category.name,
-      category: category.category
+      pratice: category.pratice
     });
   }
 
@@ -92,7 +92,7 @@ export class CategoryUpdateComponent implements OnInit {
       ...new Category(),
       id: this.editForm.get(['id']).value,
       name: this.editForm.get(['name']).value,
-      category: this.editForm.get(['category']).value
+      pratice: this.editForm.get(['pratice']).value
     };
   }
 

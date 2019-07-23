@@ -20,8 +20,9 @@
             <th><span>ID</span></th>
             <th><span>Na</span></th>
             <th><span>Comment</span></th>
-            <th><span>Response</span></th>
-            <th><span>Reponse</span></th>
+            <th><span>Annotation</span></th>
+            <th><span>Option</span></th>
+            <th><span>Question</span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,13 +32,18 @@
                 <td>{{assessmentResponse.na}}</td>
                 <td>{{assessmentResponse.comment}}</td>
                 <td>
-                    <div *ngIf="assessmentResponse.response">
-                        <a [routerLink]="['../option', assessmentResponse.response?.id, 'view' ]" >{{assessmentResponse.response?.id}}</a>
+                    <div *ngIf="assessmentResponse.annotation">
+                        <a [routerLink]="['../annotation', assessmentResponse.annotation?.id, 'view' ]" >{{assessmentResponse.annotation?.id}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="assessmentResponse.reponse">
-                        <a [routerLink]="['../question', assessmentResponse.reponse?.id, 'view' ]" >{{assessmentResponse.reponse?.id}}</a>
+                    <div *ngIf="assessmentResponse.option">
+                        <a [routerLink]="['../option', assessmentResponse.option?.id, 'view' ]" >{{assessmentResponse.option?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="assessmentResponse.question">
+                        <a [routerLink]="['../question', assessmentResponse.question?.id, 'view' ]" >{{assessmentResponse.question?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">
