@@ -13,16 +13,22 @@
                 <dd>
                     <span>{{assessmentResponse.comment}}</span>
                 </dd>
-                <dt><span>Response</span></dt>
+                <dt><span>Annotation</span></dt>
                 <dd>
-                    <div *ngIf="assessmentResponse.response">
-                        <a [routerLink]="['/option', assessmentResponse.response?.id, 'view']">{{assessmentResponse.response?.id}}</a>
+                    <div *ngIf="assessmentResponse.annotation">
+                        <a [routerLink]="['/annotation', assessmentResponse.annotation?.id, 'view']">{{assessmentResponse.annotation?.id}}</a>
                     </div>
                 </dd>
-                <dt><span>Reponse</span></dt>
+                <dt><span>Option</span></dt>
                 <dd>
-                    <div *ngIf="assessmentResponse.reponse">
-                        <a [routerLink]="['/question', assessmentResponse.reponse?.id, 'view']">{{assessmentResponse.reponse?.id}}</a>
+                    <div *ngIf="assessmentResponse.option">
+                        <a [routerLink]="['/option', assessmentResponse.option?.id, 'view']">{{assessmentResponse.option?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Question</span></dt>
+                <dd>
+                    <div *ngIf="assessmentResponse.question">
+                        <a [routerLink]="['/question', assessmentResponse.question?.id, 'view']">{{assessmentResponse.question?.id}}</a>
                     </div>
                 </dd>
             </dl>

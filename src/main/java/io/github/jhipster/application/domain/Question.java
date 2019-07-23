@@ -33,15 +33,15 @@ public class Question implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Category question;
+    private Category category;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private QuestionType question;
+    private QuestionType questionType;
 
     @OneToMany(mappedBy = "question")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Option> questions = new HashSet<>();
+    private Set<Option> options = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -91,55 +91,55 @@ public class Question implements Serializable {
         this.answerRequired = answerRequired;
     }
 
-    public Category getQuestion() {
-        return question;
+    public Category getCategory() {
+        return category;
     }
 
-    public Question question(Category category) {
-        this.question = category;
+    public Question category(Category category) {
+        this.category = category;
         return this;
     }
 
-    public void setQuestion(Category category) {
-        this.question = category;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public QuestionType getQuestion() {
-        return question;
+    public QuestionType getQuestionType() {
+        return questionType;
     }
 
-    public Question question(QuestionType questionType) {
-        this.question = questionType;
+    public Question questionType(QuestionType questionType) {
+        this.questionType = questionType;
         return this;
     }
 
-    public void setQuestion(QuestionType questionType) {
-        this.question = questionType;
+    public void setQuestionType(QuestionType questionType) {
+        this.questionType = questionType;
     }
 
-    public Set<Option> getQuestions() {
-        return questions;
+    public Set<Option> getOptions() {
+        return options;
     }
 
-    public Question questions(Set<Option> options) {
-        this.questions = options;
+    public Question options(Set<Option> options) {
+        this.options = options;
         return this;
     }
 
-    public Question addQuestion(Option option) {
-        this.questions.add(option);
+    public Question addOption(Option option) {
+        this.options.add(option);
         option.setQuestion(this);
         return this;
     }
 
-    public Question removeQuestion(Option option) {
-        this.questions.remove(option);
+    public Question removeOption(Option option) {
+        this.options.remove(option);
         option.setQuestion(null);
         return this;
     }
 
-    public void setQuestions(Set<Option> options) {
-        this.questions = options;
+    public void setOptions(Set<Option> options) {
+        this.options = options;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

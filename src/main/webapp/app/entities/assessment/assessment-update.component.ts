@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { IAssessment, Assessment } from 'app/shared/model/assessment.model';
 import { AssessmentService } from './assessment.service';
@@ -19,7 +18,8 @@ import { AssessmentResponseService } from 'app/entities/assessment-response';
 export class AssessmentUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  assessments: IAssessmentResponse[];
+  assessmentresponses: IAssessmentResponse[];
+  lastModificationDp: any;
 
   editForm = this.fb.group({
     id: [],
@@ -27,8 +27,10 @@ export class AssessmentUpdateComponent implements OnInit {
     assetOwner: [],
     techDivisionManager: [],
     applicationVersion: [],
+    status: [],
     lastModification: [],
-    assessment: []
+    information: [],
+    assessmentResponse: []
   });
 
   constructor(
@@ -52,17 +54,17 @@ export class AssessmentUpdateComponent implements OnInit {
       )
       .subscribe(
         (res: IAssessmentResponse[]) => {
-          if (!this.editForm.get('assessment').value || !this.editForm.get('assessment').value.id) {
-            this.assessments = res;
+          if (!this.editForm.get('assessmentResponse').value || !this.editForm.get('assessmentResponse').value.id) {
+            this.assessmentresponses = res;
           } else {
             this.assessmentResponseService
-              .find(this.editForm.get('assessment').value.id)
+              .find(this.editForm.get('assessmentResponse').value.id)
               .pipe(
                 filter((subResMayBeOk: HttpResponse<IAssessmentResponse>) => subResMayBeOk.ok),
                 map((subResponse: HttpResponse<IAssessmentResponse>) => subResponse.body)
               )
               .subscribe(
-                (subRes: IAssessmentResponse) => (this.assessments = [subRes].concat(res)),
+                (subRes: IAssessmentResponse) => (this.assessmentresponses = [subRes].concat(res)),
                 (subRes: HttpErrorResponse) => this.onError(subRes.message)
               );
           }
@@ -78,8 +80,10 @@ export class AssessmentUpdateComponent implements OnInit {
       assetOwner: assessment.assetOwner,
       techDivisionManager: assessment.techDivisionManager,
       applicationVersion: assessment.applicationVersion,
-      lastModification: assessment.lastModification != null ? assessment.lastModification.format(DATE_TIME_FORMAT) : null,
-      assessment: assessment.assessment
+      status: assessment.status,
+      lastModification: assessment.lastModification,
+      information: assessment.information,
+      assessmentResponse: assessment.assessmentResponse
     });
   }
 
@@ -105,11 +109,10 @@ export class AssessmentUpdateComponent implements OnInit {
       assetOwner: this.editForm.get(['assetOwner']).value,
       techDivisionManager: this.editForm.get(['techDivisionManager']).value,
       applicationVersion: this.editForm.get(['applicationVersion']).value,
-      lastModification:
-        this.editForm.get(['lastModification']).value != null
-          ? moment(this.editForm.get(['lastModification']).value, DATE_TIME_FORMAT)
-          : undefined,
-      assessment: this.editForm.get(['assessment']).value
+      status: this.editForm.get(['status']).value,
+      lastModification: this.editForm.get(['lastModification']).value,
+      information: this.editForm.get(['information']).value,
+      assessmentResponse: this.editForm.get(['assessmentResponse']).value
     };
   }
 

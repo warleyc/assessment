@@ -2,15 +2,8 @@
     "name": "Option",
     "fields": [
         {
-            "fieldName": "options",
+            "fieldName": "text",
             "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "weight",
-            "fieldType": "Integer",
             "fieldValidateRules": [
                 "required"
             ]
@@ -34,12 +27,12 @@
             "relationshipType": "one-to-one",
             "otherEntityName": "category",
             "otherEntityRelationshipName": "option",
-            "relationshipName": "option",
+            "relationshipName": "category",
             "otherEntityField": "id",
             "ownerSide": true
         }
     ],
-    "changelogDate": "20190715030813",
+    "changelogDate": "20190723124437",
     "entityTableName": "option",
     "dto": "no",
     "pagination": "no",

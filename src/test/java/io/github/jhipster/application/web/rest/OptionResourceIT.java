@@ -34,11 +34,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = AssessmentApp.class)
 public class OptionResourceIT {
 
-    private static final String DEFAULT_OPTIONS = "AAAAAAAAAA";
-    private static final String UPDATED_OPTIONS = "BBBBBBBBBB";
-
-    private static final Integer DEFAULT_WEIGHT = 1;
-    private static final Integer UPDATED_WEIGHT = 2;
+    private static final String DEFAULT_TEXT = "AAAAAAAAAA";
+    private static final String UPDATED_TEXT = "BBBBBBBBBB";
 
     private static final Integer DEFAULT_SCORE = 1;
     private static final Integer UPDATED_SCORE = 2;
@@ -88,8 +85,7 @@ public class OptionResourceIT {
      */
     public static Option createEntity(EntityManager em) {
         Option option = new Option()
-            .options(DEFAULT_OPTIONS)
-            .weight(DEFAULT_WEIGHT)
+            .text(DEFAULT_TEXT)
             .score(DEFAULT_SCORE);
         return option;
     }
@@ -101,8 +97,7 @@ public class OptionResourceIT {
      */
     public static Option createUpdatedEntity(EntityManager em) {
         Option option = new Option()
-            .options(UPDATED_OPTIONS)
-            .weight(UPDATED_WEIGHT)
+            .text(UPDATED_TEXT)
             .score(UPDATED_SCORE);
         return option;
     }
@@ -127,8 +122,7 @@ public class OptionResourceIT {
         List<Option> optionList = optionRepository.findAll();
         assertThat(optionList).hasSize(databaseSizeBeforeCreate + 1);
         Option testOption = optionList.get(optionList.size() - 1);
-        assertThat(testOption.getOptions()).isEqualTo(DEFAULT_OPTIONS);
-        assertThat(testOption.getWeight()).isEqualTo(DEFAULT_WEIGHT);
+        assertThat(testOption.getText()).isEqualTo(DEFAULT_TEXT);
         assertThat(testOption.getScore()).isEqualTo(DEFAULT_SCORE);
     }
 
@@ -154,28 +148,10 @@ public class OptionResourceIT {
 
     @Test
     @Transactional
-    public void checkOptionsIsRequired() throws Exception {
+    public void checkTextIsRequired() throws Exception {
         int databaseSizeBeforeTest = optionRepository.findAll().size();
         // set the field null
-        option.setOptions(null);
-
-        // Create the Option, which fails.
-
-        restOptionMockMvc.perform(post("/api/options")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(option)))
-            .andExpect(status().isBadRequest());
-
-        List<Option> optionList = optionRepository.findAll();
-        assertThat(optionList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkWeightIsRequired() throws Exception {
-        int databaseSizeBeforeTest = optionRepository.findAll().size();
-        // set the field null
-        option.setWeight(null);
+        option.setText(null);
 
         // Create the Option, which fails.
 
@@ -217,8 +193,7 @@ public class OptionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(option.getId().intValue())))
-            .andExpect(jsonPath("$.[*].options").value(hasItem(DEFAULT_OPTIONS.toString())))
-            .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT)))
+            .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT.toString())))
             .andExpect(jsonPath("$.[*].score").value(hasItem(DEFAULT_SCORE)));
     }
     
@@ -233,8 +208,7 @@ public class OptionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(option.getId().intValue()))
-            .andExpect(jsonPath("$.options").value(DEFAULT_OPTIONS.toString()))
-            .andExpect(jsonPath("$.weight").value(DEFAULT_WEIGHT))
+            .andExpect(jsonPath("$.text").value(DEFAULT_TEXT.toString()))
             .andExpect(jsonPath("$.score").value(DEFAULT_SCORE));
     }
 
@@ -259,8 +233,7 @@ public class OptionResourceIT {
         // Disconnect from session so that the updates on updatedOption are not directly saved in db
         em.detach(updatedOption);
         updatedOption
-            .options(UPDATED_OPTIONS)
-            .weight(UPDATED_WEIGHT)
+            .text(UPDATED_TEXT)
             .score(UPDATED_SCORE);
 
         restOptionMockMvc.perform(put("/api/options")
@@ -272,8 +245,7 @@ public class OptionResourceIT {
         List<Option> optionList = optionRepository.findAll();
         assertThat(optionList).hasSize(databaseSizeBeforeUpdate);
         Option testOption = optionList.get(optionList.size() - 1);
-        assertThat(testOption.getOptions()).isEqualTo(UPDATED_OPTIONS);
-        assertThat(testOption.getWeight()).isEqualTo(UPDATED_WEIGHT);
+        assertThat(testOption.getText()).isEqualTo(UPDATED_TEXT);
         assertThat(testOption.getScore()).isEqualTo(UPDATED_SCORE);
     }
 

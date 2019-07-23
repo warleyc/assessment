@@ -3,20 +3,12 @@ import { ICategory } from 'app/shared/model/category.model';
 
 export interface IOption {
   id?: number;
-  options?: string;
-  weight?: number;
+  text?: string;
   score?: number;
   question?: IQuestion;
-  option?: ICategory;
+  category?: ICategory;
 }
 
 export class Option implements IOption {
-  constructor(
-    public id?: number,
-    public options?: string,
-    public weight?: number,
-    public score?: number,
-    public question?: IQuestion,
-    public option?: ICategory
-  ) {}
+  constructor(public id?: number, public text?: string, public score?: number, public question?: IQuestion, public category?: ICategory) {}
 }

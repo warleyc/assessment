@@ -17,16 +17,16 @@
                 <dd>
                     <span>{{question.answerRequired}}</span>
                 </dd>
-                <dt><span>Question</span></dt>
+                <dt><span>Category</span></dt>
                 <dd>
-                    <div *ngIf="question.question">
-                        <a [routerLink]="['/category', question.question?.id, 'view']">{{question.question?.id}}</a>
+                    <div *ngIf="question.category">
+                        <a [routerLink]="['/category', question.category?.id, 'view']">{{question.category?.id}}</a>
                     </div>
                 </dd>
-                <dt><span>Question</span></dt>
+                <dt><span>Question Type</span></dt>
                 <dd>
-                    <div *ngIf="question.question">
-                        <a [routerLink]="['/question-type', question.question?.id, 'view']">{{question.question?.id}}</a>
+                    <div *ngIf="question.questionType">
+                        <a [routerLink]="['/question-type', question.questionType?.id, 'view']">{{question.questionType?.id}}</a>
                     </div>
                 </dd>
             </dl>

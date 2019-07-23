@@ -18,8 +18,17 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "DRAFT,VALIDATE,IN_PROGRESS"
+        },
+        {
             "fieldName": "lastModification",
-            "fieldType": "ZonedDateTime"
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "information",
+            "fieldType": "String"
         }
     ],
     "relationships": [
@@ -27,12 +36,12 @@
             "relationshipType": "one-to-one",
             "otherEntityName": "assessmentResponse",
             "otherEntityRelationshipName": "assessment",
-            "relationshipName": "assessment",
+            "relationshipName": "assessmentResponse",
             "otherEntityField": "id",
             "ownerSide": true
         }
     ],
-    "changelogDate": "20190715030807",
+    "changelogDate": "20190723124430",
     "entityTableName": "assessment",
     "dto": "no",
     "pagination": "no",

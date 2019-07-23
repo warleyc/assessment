@@ -21,14 +21,22 @@
                 <dd>
                     <span>{{assessment.applicationVersion}}</span>
                 </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{assessment.status}}</span>
+                </dd>
                 <dt><span>Last Modification</span></dt>
                 <dd>
                     <span>{{assessment.lastModification}}</span>
                 </dd>
-                <dt><span>Assessment</span></dt>
+                <dt><span>Information</span></dt>
                 <dd>
-                    <div *ngIf="assessment.assessment">
-                        <a [routerLink]="['/assessment-response', assessment.assessment?.id, 'view']">{{assessment.assessment?.id}}</a>
+                    <span>{{assessment.information}}</span>
+                </dd>
+                <dt><span>Assessment Response</span></dt>
+                <dd>
+                    <div *ngIf="assessment.assessmentResponse">
+                        <a [routerLink]="['/assessment-response', assessment.assessmentResponse?.id, 'view']">{{assessment.assessmentResponse?.id}}</a>
                     </div>
                 </dd>
             </dl>

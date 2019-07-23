@@ -21,11 +21,24 @@
     <include file="config/liquibase/changelog/20190715030811_added_entity_Category.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190715030812_added_entity_Pratice.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190715030813_added_entity_Option.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124430_added_entity_Assessment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124431_added_entity_Question.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124432_added_entity_Annotation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124433_added_entity_QuestionType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124434_added_entity_AssessmentResponse.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124435_added_entity_Category.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124436_added_entity_Pratice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124437_added_entity_Option.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190715030807_added_entity_constraints_Assessment.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190715030808_added_entity_constraints_Question.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190715030810_added_entity_constraints_AssessmentResponse.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190715030811_added_entity_constraints_Category.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190715030813_added_entity_constraints_Option.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124430_added_entity_constraints_Assessment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124431_added_entity_constraints_Question.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124434_added_entity_constraints_AssessmentResponse.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124435_added_entity_constraints_Category.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723124437_added_entity_constraints_Option.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

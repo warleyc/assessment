@@ -18,19 +18,17 @@
             <thead>
             <tr>
             <th><span>ID</span></th>
-            <th><span>Options</span></th>
-            <th><span>Weight</span></th>
+            <th><span>Text</span></th>
             <th><span>Score</span></th>
             <th><span>Question</span></th>
-            <th><span>Option</span></th>
+            <th><span>Category</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let option of options ;trackBy: trackId">
                 <td><a [routerLink]="['/option', option.id, 'view' ]">{{option.id}}</a></td>
-                <td>{{option.options}}</td>
-                <td>{{option.weight}}</td>
+                <td>{{option.text}}</td>
                 <td>{{option.score}}</td>
                 <td>
                     <div *ngIf="option.question">
@@ -38,8 +36,8 @@
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="option.option">
-                        <a [routerLink]="['../category', option.option?.id, 'view' ]" >{{option.option?.id}}</a>
+                    <div *ngIf="option.category">
+                        <a [routerLink]="['../category', option.category?.id, 'view' ]" >{{option.category?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">
