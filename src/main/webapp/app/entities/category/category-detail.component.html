@@ -9,10 +9,10 @@
                 <dd>
                     <span>{{category.name}}</span>
                 </dd>
-                <dt><span>Category</span></dt>
+                <dt><span>Pratice</span></dt>
                 <dd>
-                    <div *ngIf="category.category">
-                        <a [routerLink]="['/pratice', category.category?.id, 'view']">{{category.category?.id}}</a>
+                    <div *ngIf="category.pratice">
+                        <a [routerLink]="['/pratice', category.pratice?.id, 'view']">{{category.pratice?.id}}</a>
                     </div>
                 </dd>
             </dl>

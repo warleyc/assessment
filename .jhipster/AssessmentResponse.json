@@ -13,9 +13,17 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
+            "otherEntityName": "annotation",
+            "otherEntityRelationshipName": "assessmentResponse",
+            "relationshipName": "annotation",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
             "otherEntityName": "option",
             "otherEntityRelationshipName": "assessmentResponse",
-            "relationshipName": "response",
+            "relationshipName": "option",
             "otherEntityField": "id",
             "ownerSide": true
         },
@@ -23,12 +31,12 @@
             "relationshipType": "one-to-one",
             "otherEntityName": "question",
             "otherEntityRelationshipName": "assessmentResponse",
-            "relationshipName": "reponse",
+            "relationshipName": "question",
             "otherEntityField": "id",
             "ownerSide": true
         }
     ],
-    "changelogDate": "20190715030810",
+    "changelogDate": "20190723015940",
     "entityTableName": "assessment_response",
     "dto": "no",
     "pagination": "no",

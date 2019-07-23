@@ -31,6 +31,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'option',
         loadChildren: './option/option.module#AssessmentOptionModule'
+      },
+      {
+        path: 'annotation',
+        loadChildren: './annotation/annotation.module#AssessmentAnnotationModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

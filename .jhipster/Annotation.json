@@ -1,0 +1,19 @@
+{
+    "name": "Annotation",
+    "fields": [
+        {
+            "fieldName": "test",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190723015938",
+    "entityTableName": "annotation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

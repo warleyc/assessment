@@ -5,7 +5,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
+
+import io.github.jhipster.application.domain.enumeration.STATUS;
 
 /**
  * A Assessment.
@@ -33,12 +35,16 @@ public class Assessment implements Serializable {
     @Column(name = "application_version")
     private String applicationVersion;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private STATUS status;
+
     @Column(name = "last_modification")
-    private ZonedDateTime lastModification;
+    private LocalDate lastModification;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private AssessmentResponse assessment;
+    private AssessmentResponse assessmentResponse;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -101,30 +107,43 @@ public class Assessment implements Serializable {
         this.applicationVersion = applicationVersion;
     }
 
-    public ZonedDateTime getLastModification() {
+    public STATUS getStatus() {
+        return status;
+    }
+
+    public Assessment status(STATUS status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
+    }
+
+    public LocalDate getLastModification() {
         return lastModification;
     }
 
-    public Assessment lastModification(ZonedDateTime lastModification) {
+    public Assessment lastModification(LocalDate lastModification) {
         this.lastModification = lastModification;
         return this;
     }
 
-    public void setLastModification(ZonedDateTime lastModification) {
+    public void setLastModification(LocalDate lastModification) {
         this.lastModification = lastModification;
     }
 
-    public AssessmentResponse getAssessment() {
-        return assessment;
+    public AssessmentResponse getAssessmentResponse() {
+        return assessmentResponse;
     }
 
-    public Assessment assessment(AssessmentResponse assessmentResponse) {
-        this.assessment = assessmentResponse;
+    public Assessment assessmentResponse(AssessmentResponse assessmentResponse) {
+        this.assessmentResponse = assessmentResponse;
         return this;
     }
 
-    public void setAssessment(AssessmentResponse assessmentResponse) {
-        this.assessment = assessmentResponse;
+    public void setAssessmentResponse(AssessmentResponse assessmentResponse) {
+        this.assessmentResponse = assessmentResponse;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -152,6 +171,7 @@ public class Assessment implements Serializable {
             ", assetOwner='" + getAssetOwner() + "'" +
             ", techDivisionManager='" + getTechDivisionManager() + "'" +
             ", applicationVersion='" + getApplicationVersion() + "'" +
+            ", status='" + getStatus() + "'" +
             ", lastModification='" + getLastModification() + "'" +
             "}";
     }

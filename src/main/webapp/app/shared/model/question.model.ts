@@ -7,9 +7,9 @@ export interface IQuestion {
   name?: string;
   text?: string;
   answerRequired?: boolean;
-  question?: ICategory;
-  question?: IQuestionType;
-  questions?: IOption[];
+  category?: ICategory;
+  questionType?: IQuestionType;
+  options?: IOption[];
 }
 
 export class Question implements IQuestion {
@@ -18,9 +18,9 @@ export class Question implements IQuestion {
     public name?: string,
     public text?: string,
     public answerRequired?: boolean,
-    public question?: ICategory,
-    public question?: IQuestionType,
-    public questions?: IOption[]
+    public category?: ICategory,
+    public questionType?: IQuestionType,
+    public options?: IOption[]
   ) {
     this.answerRequired = this.answerRequired || false;
   }

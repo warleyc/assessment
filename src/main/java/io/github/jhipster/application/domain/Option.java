@@ -40,7 +40,7 @@ public class Option implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Category option;
+    private Category category;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -103,17 +103,17 @@ public class Option implements Serializable {
         this.question = question;
     }
 
-    public Category getOption() {
-        return option;
+    public Category getCategory() {
+        return category;
     }
 
-    public Option option(Category category) {
-        this.option = category;
+    public Option category(Category category) {
+        this.category = category;
         return this;
     }
 
-    public void setOption(Category category) {
-        this.option = category;
+    public void setCategory(Category category) {
+        this.category = category;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

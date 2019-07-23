@@ -21,7 +21,7 @@ export class OptionUpdateComponent implements OnInit {
 
   questions: IQuestion[];
 
-  options: ICategory[];
+  categories: ICategory[];
 
   editForm = this.fb.group({
     id: [],
@@ -29,7 +29,7 @@ export class OptionUpdateComponent implements OnInit {
     weight: [null, [Validators.required]],
     score: [null, [Validators.required]],
     question: [],
-    option: []
+    category: []
   });
 
   constructor(
@@ -61,17 +61,17 @@ export class OptionUpdateComponent implements OnInit {
       )
       .subscribe(
         (res: ICategory[]) => {
-          if (!this.editForm.get('option').value || !this.editForm.get('option').value.id) {
-            this.options = res;
+          if (!this.editForm.get('category').value || !this.editForm.get('category').value.id) {
+            this.categories = res;
           } else {
             this.categoryService
-              .find(this.editForm.get('option').value.id)
+              .find(this.editForm.get('category').value.id)
               .pipe(
                 filter((subResMayBeOk: HttpResponse<ICategory>) => subResMayBeOk.ok),
                 map((subResponse: HttpResponse<ICategory>) => subResponse.body)
               )
               .subscribe(
-                (subRes: ICategory) => (this.options = [subRes].concat(res)),
+                (subRes: ICategory) => (this.categories = [subRes].concat(res)),
                 (subRes: HttpErrorResponse) => this.onError(subRes.message)
               );
           }
@@ -87,7 +87,7 @@ export class OptionUpdateComponent implements OnInit {
       weight: option.weight,
       score: option.score,
       question: option.question,
-      option: option.option
+      category: option.category
     });
   }
 
@@ -113,7 +113,7 @@ export class OptionUpdateComponent implements OnInit {
       weight: this.editForm.get(['weight']).value,
       score: this.editForm.get(['score']).value,
       question: this.editForm.get(['question']).value,
-      option: this.editForm.get(['option']).value
+      category: this.editForm.get(['category']).value
     };
   }
 

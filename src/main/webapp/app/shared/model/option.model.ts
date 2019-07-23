@@ -7,7 +7,7 @@ export interface IOption {
   weight?: number;
   score?: number;
   question?: IQuestion;
-  option?: ICategory;
+  category?: ICategory;
 }
 
 export class Option implements IOption {
@@ -17,6 +17,6 @@ export class Option implements IOption {
     public weight?: number,
     public score?: number,
     public question?: IQuestion,
-    public option?: ICategory
+    public category?: ICategory
   ) {}
 }

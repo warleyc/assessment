@@ -19,7 +19,7 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Name</span></th>
-            <th><span>Category</span></th>
+            <th><span>Pratice</span></th>
             <th></th>
             </tr>
             </thead>
@@ -28,8 +28,8 @@
                 <td><a [routerLink]="['/category', category.id, 'view' ]">{{category.id}}</a></td>
                 <td>{{category.name}}</td>
                 <td>
-                    <div *ngIf="category.category">
-                        <a [routerLink]="['../pratice', category.category?.id, 'view' ]" >{{category.category?.id}}</a>
+                    <div *ngIf="category.pratice">
+                        <a [routerLink]="['../pratice', category.pratice?.id, 'view' ]" >{{category.pratice?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

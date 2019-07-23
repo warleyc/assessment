@@ -59,10 +59,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_option">Option</label>
-                    <select class="form-control" id="field_option" name="option" formControlName="option">
+                    <label class="form-control-label" for="field_category">Category</label>
+                    <select class="form-control" id="field_category" name="category" formControlName="category">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="categoryOption.id === editForm.get('option').value?.id ? editForm.get('option').value : categoryOption" *ngFor="let categoryOption of options; trackBy: trackCategoryById">{{categoryOption.id}}</option>
+                        <option [ngValue]="categoryOption.id === editForm.get('category').value?.id ? editForm.get('category').value : categoryOption" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.id}}</option>
                     </select>
                 </div>
             </div>

@@ -28,11 +28,15 @@ public class AssessmentResponse implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Option response;
+    private Annotation annotation;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Question reponse;
+    private Option option;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Question question;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -69,30 +73,43 @@ public class AssessmentResponse implements Serializable {
         this.comment = comment;
     }
 
-    public Option getResponse() {
-        return response;
+    public Annotation getAnnotation() {
+        return annotation;
     }
 
-    public AssessmentResponse response(Option option) {
-        this.response = option;
+    public AssessmentResponse annotation(Annotation annotation) {
+        this.annotation = annotation;
         return this;
     }
 
-    public void setResponse(Option option) {
-        this.response = option;
+    public void setAnnotation(Annotation annotation) {
+        this.annotation = annotation;
     }
 
-    public Question getReponse() {
-        return reponse;
+    public Option getOption() {
+        return option;
     }
 
-    public AssessmentResponse reponse(Question question) {
-        this.reponse = question;
+    public AssessmentResponse option(Option option) {
+        this.option = option;
         return this;
     }
 
-    public void setReponse(Question question) {
-        this.reponse = question;
+    public void setOption(Option option) {
+        this.option = option;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public AssessmentResponse question(Question question) {
+        this.question = question;
+        return this;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

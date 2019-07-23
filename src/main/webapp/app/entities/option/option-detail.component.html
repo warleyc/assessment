@@ -23,10 +23,10 @@
                         <a [routerLink]="['/question', option.question?.id, 'view']">{{option.question?.id}}</a>
                     </div>
                 </dd>
-                <dt><span>Option</span></dt>
+                <dt><span>Category</span></dt>
                 <dd>
-                    <div *ngIf="option.option">
-                        <a [routerLink]="['/category', option.option?.id, 'view']">{{option.option?.id}}</a>
+                    <div *ngIf="option.category">
+                        <a [routerLink]="['/category', option.category?.id, 'view']">{{option.category?.id}}</a>
                     </div>
                 </dd>
             </dl>

@@ -30,17 +30,28 @@
                            formControlName="applicationVersion"/>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <select class="form-control" name="status" formControlName="status" id="field_status">
+                        <option value="DRAFT">DRAFT</option>
+                        <option value="VALIDATE">VALIDATE</option>
+                        <option value="IN_PROGRESS">IN_PROGRESS</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="field_lastModification">Last Modification</label>
-                    <div class="d-flex">
-                        <input id="field_lastModification" type="datetime-local" class="form-control" name="lastModification" formControlName="lastModification" placeholder="YYYY-MM-DD HH:mm"/>
+                    <div class="input-group">
+                        <input id="field_lastModification" type="text" class="form-control" name="lastModification" ngbDatepicker  #lastModificationDp="ngbDatepicker" formControlName="lastModification"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="lastModificationDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_assessment">Assessment</label>
-                    <select class="form-control" id="field_assessment" name="assessment" formControlName="assessment">
+                    <label class="form-control-label" for="field_assessmentResponse">Assessment Response</label>
+                    <select class="form-control" id="field_assessmentResponse" name="assessmentResponse" formControlName="assessmentResponse">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="assessmentResponseOption.id === editForm.get('assessment').value?.id ? editForm.get('assessment').value : assessmentResponseOption" *ngFor="let assessmentResponseOption of assessments; trackBy: trackAssessmentResponseById">{{assessmentResponseOption.id}}</option>
+                        <option [ngValue]="assessmentResponseOption.id === editForm.get('assessmentResponse').value?.id ? editForm.get('assessmentResponse').value : assessmentResponseOption" *ngFor="let assessmentResponseOption of assessmentresponses; trackBy: trackAssessmentResponseById">{{assessmentResponseOption.id}}</option>
                     </select>
                 </div>
             </div>
